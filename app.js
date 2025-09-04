@@ -10,7 +10,7 @@ const methodOverride = require("method-override");
 app.use(methodOverride('_method'));
 
 
-app.set("view engine", "views");
+app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
