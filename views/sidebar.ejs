@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="sidebar.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <i class="fa-solid fa-bars" id="hamburger"></i>
+    <div class="blogs-container" id="sidebar">
+      <h2 class="heading">ALL BLOGS</h2>
+      <i class="fa-solid fa-xmark" id="close-btn"></i>
+      <hr />
+      <div class="all-blogs">
+        <div class="blog-items">
+          <ul>
+            <%blogs.reverse().forEach((blog)=>{%>
+            <li class="blog-list-titles">
+              <a href="/blogs/<%=blog._id%>" class="full-link" target="_blank">
+                <span><%= blog.title%></span>
+              </a>
+
+              <div class="options-container">
+                <div class="icon">
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+                <div class="popup-menu">
+                  <form
+                    method="get"
+                    action="/blogs/<%=blog._id%>/edit"
+                    class="menu-buttons"
+                  >
+                    <div><button>Edit</button></div>
+                  </form>
+                  <form
+                    method="post"
+                    action="/blogs/delete/<%=blog._id%>?_method=DELETE"
+                    class="menu-buttons"
+                  >
+                    <div><button>Delete</button></div>
+                  </form>
+                </div>
+              </div>
+            </li>
+
+            <%})%>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="/popupmenu.js"></script>
+    <script src="/sidebar.js"></script>
+  </body>
+</html>

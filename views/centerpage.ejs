@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAILY BLOGS</title>
+    <link rel="stylesheet" href="centerpage.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="blog-create-container">
+        <%- include('sidebar.ejs',{blogs}) %>
+        <div class="formm">
+
+            <h1 class="create-heading">CREATE BLOG</h1>
+            <div class="blog-form-container">
+                <form method="post" action="/blogs" class="blog-form">
+                    <div class="input-box">
+
+                        <input type="text" placeholder="Title" name="title" class="title" required>
+                        <input type="text" name="author" id="author" placeholder="author" class="author">
+                    </div>
+                    <textarea name="content" id="content" placeholder="write your thoughts here..." class="content" required></textarea>
+                    <button>Create Post</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
