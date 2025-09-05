@@ -125,6 +125,7 @@ app.delete("/blogs/delete/:id",async (req,res)=>{
 
 app.get("/allblogs", async (req, res) => {
   let blogs = await Blog.find();
+  
   res.json(blogs); // shows all blogs in JSON
 });
 
