@@ -12,7 +12,6 @@
       <p><%= blog.content%></p>
       <h4>- @<%=blog.author%></h4>
       <h6>
-        <%=blog.created_at.toString().split(" ")[4]%> &nbsp;
         <%=blog.created_at.toString().split(" ").slice(0,4).join("-")%>
       </h6>
     </div>
