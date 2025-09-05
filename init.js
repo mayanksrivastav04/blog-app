@@ -19,11 +19,7 @@ let allBlogs = ([
     author:"mayank",
     content:"very good gaming",
   },
-  {
-    title:"success",
-    author:"keerti",
-    content:"success is not a destination it is a journey..."
-  }
+  
 ])
 
 Blog.insertMany(allBlogs);
