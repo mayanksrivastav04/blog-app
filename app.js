@@ -35,10 +35,13 @@ async function main() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("✅ Connected to MongoDB Atlas");
+    console.log("Connected DB:", mongoose.connection.name);
   } catch (err) {
     console.error("❌ MongoDB connection error:", err);
   }
 }
+console.log("Connected DB:", mongoose.connection.name);
+
 
 
 //INDEX ROUTE
@@ -55,28 +58,29 @@ app.get("/",async (req,res)=>{
 // });
 
 //CREATE ROUTE
-app.post("/blogs", (req, res) => {
+app.post("/blogs", async (req, res) => {
   let { title, author, content } = req.body;
-  // console.log(title,author,content);
+
   let blogData = {
-    title:title,
-    content:content,
-    created_at:new Date()
-  }
-  if(author){
+    title,
+    content,
+    created_at: new Date()
+  };
+  if (author) {
     blogData.author = author;
   }
-  let newBlog = new Blog(blogData);
-  newBlog
-    .save()
-    .then((res) => {
-      console.log("Blog saved successfully...");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    res.redirect("/")
+
+  try {
+    let newBlog = new Blog(blogData);
+    let savedBlog = await newBlog.save();
+    console.log("✅ Blog saved:", savedBlog); // 👈 log saved doc
+  } catch (err) {
+    console.error("❌ Error saving blog:", err);
+  }
+
+  res.redirect("/");
 });
+
 
 app.get("/blogs/:id",async (req,res)=>{
   let {id}= req.params;
@@ -125,7 +129,7 @@ app.delete("/blogs/delete/:id",async (req,res)=>{
 
 app.get("/allblogs", async (req, res) => {
   let blogs = await Blog.find();
-  
+
   res.json(blogs); // shows all blogs in JSON
 });
 
